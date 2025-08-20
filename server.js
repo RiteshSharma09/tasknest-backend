@@ -61,11 +61,11 @@ app.post("/assign-task", async (req, res) => {
     console.log(`Task assigned: ${taskTitle} -> User: ${userId}`);
 
     // Optionally, you can send a push notification after assigning
-    // await axios.post(`${BACKEND_URL}/send-notification`, {
-    //   token: userPushToken,
-    //   title: "New Task Assigned",
-    //   body: taskTitle,
-    // });
+    await axios.post("https://tasknest-backend-6h3a.onrender.com/send-notification", {
+      token: userPushToken,
+      title: "New Task Assigned",
+      body: taskTitle,
+    });
 
     res.status(200).json({ success: true, message: "Task assigned successfully" });
   } catch (err) {
